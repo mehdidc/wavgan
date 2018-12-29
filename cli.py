@@ -25,6 +25,9 @@ def train(
     generator = Generator(input_dim=1, output_dim=output_dim)
     discriminator = Discriminator(
         input_dim=1, output_dim=1, input_size=max_len)
+    if cuda:
+        discriminator = discriminator.cuda()
+        generator = generator.cuda()
     generator_optimizer = optim.Adam(
         generator.parameters(), lr=lr, betas=(beta1, beta2),
         weight_decay=weight_decay
