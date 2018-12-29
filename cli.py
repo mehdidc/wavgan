@@ -15,6 +15,7 @@ def train(
         lr=1e-04, weight_decay=1e-04, beta1=0.5, beta2=.999, 
         batch_size=32, epochs=1000,
         max_len=500,
+        log_interval=50,
         cppn=True,
         cuda=False):
     # define the optimizers.
@@ -88,8 +89,8 @@ def train(
                 gen_loss = -dfake
                 gen_loss.backward()
                 generator_optimizer.step()
-            print(f'gen_loss: {gen_loss.item():.4f} discr_loss: {discr_loss.item():.4f}')
-            if nb_iter % 10 == 0:
+            if nb_iter % log_interval == 0:
+                print(f'gen_loss: {gen_loss.item():.4f} discr_loss: {discr_loss.item():.4f}')
                 x = x.detach().cpu().numpy()
                 xfake = xfake.detach().cpu().numpy()
                 signal = x[0:3, 0].T
