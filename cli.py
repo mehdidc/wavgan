@@ -15,6 +15,7 @@ def train(
         nb=None,
         lr=1e-04, weight_decay=1e-04, beta1=0.5, beta2=.999, 
         batch_size=32, epochs=1000,
+        input_dim=1,
         max_len=500,
         log_interval=50,
         cppn=True,
@@ -24,7 +25,7 @@ def train(
         output_dim = 1
     else:
         output_dim = max_len
-    generator = Generator(input_dim=1, output_dim=output_dim)
+    generator = Generator(input_dim=input_dim, output_dim=output_dim)
     discriminator = Discriminator(
         input_dim=1, output_dim=1, input_size=max_len)
     if cuda:
