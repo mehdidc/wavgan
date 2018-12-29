@@ -4,7 +4,6 @@ import matplotlib.pyplot as plt
 import torch
 from torch import optim
 from tqdm import tqdm
-import utils
 from torch.utils.data import DataLoader
 from model import Generator, Discriminator
 from transforms import Scale, Compose, PadTrim
