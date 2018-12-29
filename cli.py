@@ -92,8 +92,8 @@ def train(
             if nb_iter % 10 == 0:
                 x = x.detach().cpu().numpy()
                 xfake = xfake.detach().cpu().numpy()
-                signal = x[:, 0].T
-                fake_signal = xfake[:, 0].T
+                signal = x[0:3, 0].T
+                fake_signal = xfake[0:3, 0].T
                 fig = plt.figure()
                 plt.plot(signal, color='blue', label='true')
                 plt.plot(fake_signal, color='orange', label='fake')
