@@ -2,8 +2,6 @@ from clize import run
 from torch.nn import init
 from torch.nn.init import xavier_uniform
 import torch
-import utils
-import torch
 import time
 import os
 import pickle
