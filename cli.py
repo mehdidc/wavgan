@@ -1,5 +1,6 @@
 import matplotlib as mpl
 mpl.use('Agg')
+from scipy.io import wavfile
 import matplotlib.pyplot as plt
 import torch
 from torch import optim
