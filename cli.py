@@ -49,6 +49,8 @@ def train(
         PadTrim(max_len=max_len),
         Scale(),
     ])
+    if nb:
+        nb = int(nb)
     dataset = Dataset(data_folder, transform=transform, nb=nb)
     print(len(dataset))
     dataloader = DataLoader(dataset, batch_size=batch_size)
