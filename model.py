@@ -14,7 +14,7 @@ from data import Dataset
 class Sin(nn.Module):
 
     def forward(self, x):
-        return torch.sin(x)
+        return torch.sin(30*x)
 
 def weights_init(m):
     classname = m.__class__.__name__
