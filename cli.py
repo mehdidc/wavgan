@@ -58,7 +58,7 @@ def train(
             dreal = discriminator(x).mean()
 
             l = torch.randn(batch_size, generator.input_dim - 1)
-            t = torch.linspace(-2, 2, discriminator.input_size)
+            t = torch.linspace(-1, 1, discriminator.input_size)
             
             if cppn:
                 z = torch.zeros(batch_size, discriminator.input_size, generator.input_dim)
