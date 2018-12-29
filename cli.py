@@ -54,8 +54,8 @@ def train(
     nb_iter = 0
     for epoch in range(epoch_start, epochs+1):
         for batch_index, data in enumerate(dataloader):
-            #for p in discriminator.parameters():
-            #    p.data.clamp_(-0.1, 0.1)
+            for p in discriminator.parameters():
+                p.data.clamp_(-0.1, 0.1)
             x = data
             x = x.cuda() if cuda else x
             discriminator.zero_grad()
@@ -98,7 +98,7 @@ def train(
                 xfake = xfake.detach().cpu().numpy()
                 signal = x[0:3, 0].T
                 fake_signal = xfake[0:3, 0].T
-                fig = plt.figure()
+                fig = plt.figure(figsize=(50, 10))
                 plt.plot(signal, color='blue', label='true')
                 plt.plot(fake_signal, color='orange', label='fake')
                 #plt.legend()
