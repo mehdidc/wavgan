@@ -25,7 +25,6 @@ def weights_init(m):
         m.bias.data.fill_(0)
     elif classname == 'Linear':
         xavier_uniform(m.weight.data)
-        m.weight.data *= 10
         m.bias.data.fill_(0)
 
 class Generator(nn.Module):
