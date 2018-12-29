@@ -90,7 +90,7 @@ def train(
                 gen_loss.backward()
                 generator_optimizer.step()
             if nb_iter % log_interval == 0:
-                print(f'gen_loss: {gen_loss.item():.4f} discr_loss: {discr_loss.item():.4f}')
+                print(f'niter: {nb_iter:05d} gen_loss: {gen_loss.item():.4f} discr_loss: {discr_loss.item():.4f}')
                 x = x.detach().cpu().numpy()
                 xfake = xfake.detach().cpu().numpy()
                 signal = x[0:3, 0].T
