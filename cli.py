@@ -11,16 +11,12 @@ from transforms import Scale, Compose, PadTrim
 from data import Dataset
 from clize import run
 def train(
-        lr=1e-04, weight_decay=1e-04, beta1=0.5, beta2=.999, lamda=10.,
-        batch_size=32, sample_size=32, epochs=1000,
-        d_trains_per_g_train=2,
-        checkpoint_dir='checkpoints',
-        checkpoint_interval=1000,
-        image_log_interval=100,
-        loss_log_interval=30,
+        *,
+        data_folder='data',
+        lr=1e-04, weight_decay=1e-04, beta1=0.5, beta2=.999, 
+        batch_size=32, epochs=1000,
         max_len=500,
         cppn=True,
-        resume=False, 
         cuda=False):
     # define the optimizers.
     if cppn:
@@ -47,7 +43,7 @@ def train(
         PadTrim(max_len=max_len),
         Scale(),
     ])
-    dataset = Dataset('data', transform=transform, nb=2)
+    dataset = Dataset(data_folder, transform=transform)
     dataloader = DataLoader(dataset, batch_size=batch_size)
     nb_iter = 0
     for epoch in range(epoch_start, epochs+1):
