@@ -98,6 +98,12 @@ def train(
                 xfake = xfake.detach().cpu().numpy()
                 signal = x[0:3, 0].T
                 fake_signal = xfake[0:3, 0].T
+                for i in range(len(xfake)):
+                    s = xfake[i, 0]
+                    wavfile.write(f'fake_{i:03d}.wav', 16000, s)
+                for i in range(len(x)):
+                    s = x[i, 0]
+                    wavfile.write(f'real_{i:03d}.wav', 16000, s)
                 fig = plt.figure(figsize=(50, 10))
                 plt.plot(signal, color='blue', label='true')
                 plt.plot(fake_signal, color='orange', label='fake')
