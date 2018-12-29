@@ -17,11 +17,11 @@ def train(
         checkpoint_interval=1000,
         image_log_interval=100,
         loss_log_interval=30,
-        resume=False, cuda=False):
+        max_len=500,
+        cppn=True,
+        resume=False, 
+        cuda=False):
     # define the optimizers.
-    cppn = True
-    max_len = 10
-    batch_size = 1
     if cppn:
         output_dim = 1
     else:

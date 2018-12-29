@@ -38,17 +38,13 @@ class Generator(nn.Module):
         self.input_dim = input_dim
         self.output_dim = output_dim
         self.fc = nn.Sequential(
-            nn.Linear(self.input_dim, 32),
+            nn.Linear(self.input_dim, 256),
             nn.Tanh(),
-            #Sin(),
-            nn.Linear(32, 16),
-            #Sin(),
+            nn.Linear(256, 128),
             nn.Tanh(),
-            nn.Linear(16, output_dim),
-            #nn.Tanh()
+            nn.Linear(128, output_dim),
             Sin(),
         )
-        #xavier_initialize(self)
         self.apply(weights_init)
 
     def forward(self, input):
