@@ -9,6 +9,7 @@ from torch.utils.data import DataLoader
 from model import Generator, Discriminator
 from transforms import Scale, Compose, PadTrim
 from data import Dataset
+from clize import run
 def train(
         lr=1e-04, weight_decay=1e-04, beta1=0.5, beta2=.999, lamda=10.,
         batch_size=32, sample_size=32, epochs=1000,
@@ -100,4 +101,4 @@ def train(
             nb_iter += 1
 
 if __name__ == '__main__':
-    train()
+    run(train)
