@@ -12,6 +12,7 @@ from clize import run
 def train(
         *,
         data_folder='data',
+        nb=None,
         lr=1e-04, weight_decay=1e-04, beta1=0.5, beta2=.999, 
         batch_size=32, epochs=1000,
         max_len=500,
@@ -46,7 +47,8 @@ def train(
         PadTrim(max_len=max_len),
         Scale(),
     ])
-    dataset = Dataset(data_folder, transform=transform)
+    dataset = Dataset(data_folder, transform=transform, nb=nb)
+    print(len(dataset))
     dataloader = DataLoader(dataset, batch_size=batch_size)
     nb_iter = 0
     for epoch in range(epoch_start, epochs+1):
