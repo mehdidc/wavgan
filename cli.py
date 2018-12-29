@@ -62,6 +62,8 @@ def train(
             
             if cppn:
                 z = torch.zeros(batch_size, discriminator.input_size, generator.input_dim)
+                if cuda:
+                    z = z.cuda()
                 z[:, :, 1:] = l.view(l.size(0), 1, l.size(1)).expand(l.size(0), z.size(1), l.size(1))
                 z[:, :, 0] = t
                 z = z.contiguous()
@@ -71,6 +73,8 @@ def train(
                 xfake = xfake.view(z.size(0), 1, z.size(1))
             else:
                 z = torch.randn(batch_size, generator.input_dim)
+                if cuda:
+                    z = z.cuda()
                 xfake = generator(z)
                 xfake = xfake.view(xfake.size(0), 1, xfake.size(1))
             if nb_iter % 2 == 0:
